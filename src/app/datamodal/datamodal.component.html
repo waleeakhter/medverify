@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>
+    <img src="/assets/logo.png" alt="logo" class="w-32 mx-auto">
+    <button mat-dialog-close class="bg-slate-200 rounded-full w-8 h-8 absolute right-5 top-5" color="warn"
+        aria-label="icon">
+        X
+    </button>
+</h2>
+<mat-dialog-content class="md:w-[45rem] ">
+    <h3 class="text-yellow-500 text-4xl text-center my-6">Legal With prescription
+    </h3>
+    <div class="flex">
+        <div class="flex-1 justify-between gap-7 flex flex-col text-xl">
+            <div>
+                <h4 class="font-semibold">Class</h4>
+                <p>{{data.class}}</p>
+            </div>
+            <div>
+                <h4 class="font-semibold underline">Dosage restriction:</h4>
+                <p>{{data.dosage}}</p>
+            </div>
+            <div>
+                <h4 class="font-semibold underline">Required Documents:</h4>
+                <ul *ngIf="data.documents" class="list-disc ml-6">
+                    <li *ngFor="let item of data.documents">{{item}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flex-1 flex flex-col justify-around gap-7 items-end">
+            <img src="/assets/ad-small.png" alt="img" class="max-w-[8rem]">
+            <img src="/assets/ad-small.png" alt="img" class="max-w-[8rem]">
+        </div>
+    </div>
+    <div class="text-xl">
+        <h4 class="font-semibold underline">Source link:</h4>
+        <p>{{data.source}}</p>
+    </div>
+
+</mat-dialog-content>

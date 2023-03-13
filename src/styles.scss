@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+    --mdc-protected-button-container-color: #3e52d6 !important;
+}
+html,
+body {
+    height: 100%;
+    background-image: url(./assets/background.jpeg);
+    background-position: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+*:not(.material-icons) {
+    font-family: "Noto Sans", sans-serif !important;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.mat-mdc-raised-button.mat-primary {
+    --mdc-protected-button-container-color: #3e52d6 !important;
+    --mdc-protected-button-label-text-color: #fff;
+    height: 50px;
+    font-size: 1rem;
+}
