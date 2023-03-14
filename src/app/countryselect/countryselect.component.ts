@@ -1,11 +1,10 @@
-import { Component, Output, TemplateRef, ViewChild, Inject } from '@angular/core';
+import { Component, Output, TemplateRef, ViewChild, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Country } from '@angular-material-extensions/select-country';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DatamodalComponent } from '../datamodal/datamodal.component';
-
-// import { ModalComponent } from '../modal/modal.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DatamodalComponent } from '../datamodal/datamodal.component'
+import { PreceptionService } from '../services/prescription.service';
 type Countries = {
   code: string
   code3: string
@@ -24,8 +23,8 @@ interface DialogData {
   styleUrls: ['./countryselect.component.scss']
 })
 
-export class CountryselectComponent {
-  constructor(public dialog: MatDialog) { }
+export class CountryselectComponent implements OnInit {
+  constructor(public dialog: MatDialog, private service: PreceptionService) { }
   @ViewChild('dialogRef')
   dialogRef!: TemplateRef<any>;
   myControl = new FormControl('');
@@ -33,13 +32,9 @@ export class CountryselectComponent {
   title = 'select-country';
   countryFormControl = new FormControl();
   countryFormGroup!: FormGroup;
-  selectedCountry: Countries = {
-    code: '',
-    code3: '',
-    name: '',
-    number: ''
-  }
 
+  selectedCountry!: Country;
+  preception: any
 
   countries: Countries[] = [
     { code: "AF", code3: "AFG", name: "Afghanistan", number: "004" },
@@ -301,8 +296,20 @@ export class CountryselectComponent {
     documents: ["Original prescription", "Doctor certificate"],
     source: "google.com"
   }
+
+
+  ngOnInit() {
+    this.service.getPosts()
+      .subscribe(response => {
+        this.preception = response;
+
+        // user below code for orginal api response
+        // this.DialogData = response
+      });
+  }
   onCountrySelected(country: Country) {
     console.log(country);
+    this.selectedCountry = country
     this.openAlertDialog()
   }
 
@@ -311,9 +318,7 @@ export class CountryselectComponent {
       data: this.DialogData,
     });
   }
-  onSubmit = () => {
-    console.log(this.selectedCountry)
-  }
+
 }
 
 

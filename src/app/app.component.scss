@@ -1,4 +1,4 @@
-.container {
+.container-div {
     .banner-select-div {
         display: flex;
         justify-content: space-between;
@@ -10,11 +10,13 @@
         .left-addBanner,
         .rigth-addBanner {
             display: flex;
-            flex-direction: column;
             gap: 50px;
-            max-width: 180px;
+            @media screen and (max-width: 991px) {
+                flex: 1 1 25%;
+            }
             img {
                 max-width: 100%;
+                height: auto;
             }
         }
     }
@@ -29,4 +31,11 @@ mat-drawer {
     width: 100%;
     right: 0;
     position: fixed !important;
+}
+:host ::ng-deep mat-form-field {
+    width: 100%;
+}
+mat-drawer-container {
+    display: unset;
+    background-color: unset;
 }
