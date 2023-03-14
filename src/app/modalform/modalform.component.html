@@ -1,0 +1,25 @@
+<h2 mat-dialog-title class="mb-5">
+    Medicines Available in {{data.country.name}}
+    <button mat-dialog-close class="bg-slate-200 rounded-full w-8 h-8 absolute right-5 top-5" color="warn"
+        aria-label="icon">
+        X
+    </button>
+</h2>
+<mat-dialog-content class="md:max-w-[45rem] w-[80vmin]  ">
+    <form class="mt-5 flex flex-col gap-5 " (ngSubmit)="onSubmit()">
+        <mat-form-field class="select-div w-full" appearance="fill">
+            <mat-label>Select Medicine </mat-label>
+            <input type="text" placeholder="Pick one" [formControl]="medicineFormControl" aria-label="Number" matInput
+                [matAutocomplete]="auto" required>
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="medicineFormControl.hasError('required')">
+                Medicine name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <button type="submit" mat-raised-button class="bg-blue-800" color="primary">Submit</button>
+    </form>
+</mat-dialog-content>

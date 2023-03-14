@@ -3,20 +3,16 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Country } from '@angular-material-extensions/select-country';
 import { MatDialog } from '@angular/material/dialog';
-import { DatamodalComponent } from '../datamodal/datamodal.component'
 import { PreceptionService } from '../services/prescription.service';
+import { ModalformComponent } from '../modalform/modalform.component';
+
 type Countries = {
   code: string
   code3: string
   name: string
   number: string
 }
-interface DialogData {
-  class: "Narcotic Pain releif",
-  dosage: "30 day supply",
-  documents: ["Original prescription", "Doctor certificate"],
-  source: "google.com"
-}
+
 @Component({
   selector: 'app-countryselect',
   templateUrl: './countryselect.component.html',
@@ -290,13 +286,8 @@ export class CountryselectComponent implements OnInit {
 
 
 
-  DialogData: DialogData = {
-    class: "Narcotic Pain releif",
-    dosage: "30 day supply",
-    documents: ["Original prescription", "Doctor certificate"],
-    source: "google.com"
-  }
 
+  options: string[] = ['Medicine One', 'Medicine Two', 'Medicine Three'];
 
   ngOnInit() {
     this.service.getPosts()
@@ -307,17 +298,18 @@ export class CountryselectComponent implements OnInit {
         // this.DialogData = response
       });
   }
+  openformDialog() {
+    const dialogRef = this.dialog.open(ModalformComponent, {
+      data: { options: this.options, country: this.selectedCountry },
+    });
+  }
+
   onCountrySelected(country: Country) {
     console.log(country);
     this.selectedCountry = country
-    this.openAlertDialog()
+    this.openformDialog()
   }
 
-  openAlertDialog() {
-    const dialogRef = this.dialog.open(DatamodalComponent, {
-      data: this.DialogData,
-    });
-  }
 
 }
 

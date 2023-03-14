@@ -21,6 +21,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { ContactformComponent } from './contactform/contactform.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalformComponent } from './modalform/modalform.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CountryselectComponent,
     DatamodalComponent,
     ContactformComponent,
+    ModalformComponent,
   ],
   imports: [
     BrowserModule,

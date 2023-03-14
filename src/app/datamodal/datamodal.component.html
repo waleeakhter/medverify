@@ -5,23 +5,23 @@
         X
     </button>
 </h2>
-<mat-dialog-content class="md:w-[45rem] ">
+<mat-dialog-content class="md:max-w-[45rem] w-[100vmin] ">
     <h3 class="text-yellow-500 text-4xl text-center my-6">Legal With prescription
     </h3>
     <div class="flex">
         <div class="flex-1 justify-between gap-7 flex flex-col text-xl">
             <div>
                 <h4 class="font-semibold">Class</h4>
-                <p>{{data.class}}</p>
+                <p>{{DialogData.class}}</p>
             </div>
             <div>
                 <h4 class="font-semibold underline">Dosage restriction:</h4>
-                <p>{{data.dosage}}</p>
+                <p>{{DialogData.dosage}}</p>
             </div>
             <div>
                 <h4 class="font-semibold underline">Required Documents:</h4>
-                <ul *ngIf="data.documents" class="list-disc ml-6">
-                    <li *ngFor="let item of data.documents">{{item}}</li>
+                <ul *ngIf="DialogData.documents" class="list-disc ml-6">
+                    <li *ngFor="let item of DialogData.documents">{{item}}</li>
                 </ul>
             </div>
         </div>
@@ -32,7 +32,7 @@
     </div>
     <div class="text-xl">
         <h4 class="font-semibold underline">Source link:</h4>
-        <p>{{data.source}}</p>
+        <p>{{DialogData.source}}</p>
     </div>
 
 </mat-dialog-content>

@@ -19,10 +19,10 @@ export class DatamodalComponent {
     source: ""
   }
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public data: { list: DialogData, country: {} },
     private dialogRef: MatDialogRef<DatamodalComponent>) {
     if (data) {
-      this.DialogData = data
+      this.DialogData = data.list
     }
   }
 
